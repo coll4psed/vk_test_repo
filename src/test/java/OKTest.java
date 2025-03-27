@@ -29,10 +29,20 @@ public class OKTest {
         assertTrue(profilePage.isProfilePageOpened());
     }
 
+    // Предусловие, изначально должна быть светлая тема
     @Test
     public void userCanSwitchToDarkTheme(){
         FeedPage feedPage = new FeedPage();
-        feedPage.SwitchTheme();
+        feedPage.SwitchToDarkTheme();
         assertTrue(feedPage.isDarkThemeEnabled());
+    }
+
+    @Test
+    public void userCanSubscribeGroup(){
+        FeedPage feedPage = new FeedPage();
+        GroupPage groupPage = feedPage.openGroupPage();
+        groupPage.subcribe();
+        groupPage.waitForPageToLoad();
+        assertTrue(groupPage.isSubscribed());
     }
 }

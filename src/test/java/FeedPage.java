@@ -13,6 +13,8 @@ public class FeedPage {
             "//*[@id=\"user-dropdown-menu\"]/div[1]/div/div[2]/ul/li[2]/button"));
     private final SelenideElement darkThemeButton = $(By.xpath(
             "//*[@id=\"user-dropdown-menu\"]/div[1]/div/div[2]/ul/li[2]/ul/li[2]/button"));
+    private final SelenideElement groupButton = $(By.xpath(
+            "//*[@id=\"hook_Block_Navigation\"]/div/div/div[6]/a"));
     private final SelenideElement mainContainer = $(By.xpath(
             "/html"));
 
@@ -22,11 +24,16 @@ public class FeedPage {
         return new ProfilePage();
     }
 
+    public GroupPage openGroupPage(){
+        groupButton.click();
+        return new GroupPage();
+    }
+
     public boolean isDarkThemeEnabled(){
         return mainContainer.has(Condition.cssClass("__ui-theme_dark"));
     }
 
-    public void SwitchTheme(){
+    public void SwitchToDarkTheme(){
         toolbarButton.click();
         themeButton.click();
         darkThemeButton.click();
