@@ -5,9 +5,9 @@ import static com.codeborne.selenide.Selenide.$;
 
 public class LoginPage {
     private final SelenideElement loginInput = $(By.xpath(
-            "//*[@id=\"field_email\"]"));
+            ".//input[@id='field_email']"));
     private final SelenideElement passwordInput = $(By.xpath(
-            "//*[@id=\"field_password\"]"));
+            ".//input[@id='field_password']"));
 
     public void Login(){
         loginInput.setValue(UserCredentials.login);

@@ -1,4 +1,5 @@
 import com.codeborne.selenide.Condition;
+import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
 import org.openqa.selenium.By;
 
@@ -6,15 +7,13 @@ import static com.codeborne.selenide.Selenide.$;
 
 public class FeedPage {
     private final SelenideElement toolbarButton = $(By.xpath(
-            "//*[@id=\"hook_Block_ToolbarUserDropdown\"]/div/button"));
+            ".//button[contains(@class, 'toolbar_ucard')]"));
     private final SelenideElement userInfoToolbarLink = $(By.xpath(
-            "//*[@id=\"user-dropdown-menu\"]/div[1]/div/div[1]/div[1]/a"));
+            ".//div[contains(@class, 'user_name')]"));
     private final SelenideElement themeButton = $(By.xpath(
-            "//*[@id=\"user-dropdown-menu\"]/div[1]/div/div[2]/ul/li[2]/button"));
+            ".//button[contains(@class, 'theme-switcher')]"));
     private final SelenideElement darkThemeButton = $(By.xpath(
-            "//*[@id=\"user-dropdown-menu\"]/div[1]/div/div[2]/ul/li[2]/ul/li[2]/button"));
-    private final SelenideElement groupButton = $(By.xpath(
-            "//*[@id=\"hook_Block_Navigation\"]/div/div/div[6]/a"));
+            ".//li[@data-theme='dark']"));
     private final SelenideElement mainContainer = $(By.xpath(
             "/html"));
 
@@ -25,7 +24,7 @@ public class FeedPage {
     }
 
     public GroupPage openGroupPage(){
-        groupButton.click();
+        Selenide.open("https://ok.ru/groups");
         return new GroupPage();
     }
 

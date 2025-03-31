@@ -1,6 +1,7 @@
 import com.codeborne.selenide.Selenide;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -41,8 +42,14 @@ public class OKTest {
     public void userCanSubscribeGroup(){
         FeedPage feedPage = new FeedPage();
         GroupPage groupPage = feedPage.openGroupPage();
-        groupPage.subcribe();
+        groupPage.subscribe();
         groupPage.waitForPageToLoad();
         assertTrue(groupPage.isSubscribed());
+    }
+
+    @Disabled
+    @Test
+    public void disabledTest(){
+        assertTrue(true);
     }
 }

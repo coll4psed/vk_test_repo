@@ -6,7 +6,7 @@ import static com.codeborne.selenide.Selenide.$;
 
 public class ProfilePage {
     private final SelenideElement profileBlock = $(By.xpath(
-            "//*[@id=\"hook_Block_ProfileCover\"]/div"));
+            ".//div[contains(@class, 'profile-cover')]"));
 
     public void waitForPageToLoad(){
         profileBlock.shouldBe(visible);
