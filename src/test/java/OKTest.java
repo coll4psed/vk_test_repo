@@ -1,8 +1,5 @@
 import com.codeborne.selenide.Selenide;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Disabled;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -14,7 +11,7 @@ public class OKTest {
     public static void loginOK(){
         Selenide.open(baseUrl);
         LoginPage loginPage = new LoginPage();
-        loginPage.Login();
+        loginPage.login("technopol45", "technopolisPassword");
     }
 
     @BeforeEach
@@ -22,6 +19,7 @@ public class OKTest {
         Selenide.open(baseUrl);
     }
 
+    @DisplayName("User accessing his profile")
     @Test
     public void userCanAccessProfileUsingToolbar() {
         FeedPage feedPage = new FeedPage();
@@ -31,13 +29,15 @@ public class OKTest {
     }
 
     // Предусловие, изначально должна быть светлая тема
+    @DisplayName("User switching to dark theme")
     @Test
     public void userCanSwitchToDarkTheme(){
         FeedPage feedPage = new FeedPage();
-        feedPage.SwitchToDarkTheme();
+        feedPage.switchToDarkTheme();
         assertTrue(feedPage.isDarkThemeEnabled());
     }
 
+    @DisplayName("User subscribes to a group")
     @Test
     public void userCanSubscribeGroup(){
         FeedPage feedPage = new FeedPage();
@@ -51,5 +51,11 @@ public class OKTest {
     @Test
     public void disabledTest(){
         assertTrue(true);
+    }
+
+    @AfterAll
+    public static void logout(){
+        FeedPage feedPage = new FeedPage();
+        feedPage.logout();
     }
 }

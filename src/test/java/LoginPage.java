@@ -9,8 +9,11 @@ public class LoginPage {
     private final SelenideElement passwordInput = $(By.xpath(
             ".//input[@id='field_password']"));
 
-    public void Login(){
-        loginInput.setValue(UserCredentials.login);
-        passwordInput.setValue(UserCredentials.password).pressEnter();
+    public final SelenideElement errorMessage = $(By.xpath(
+            ".//div[contains(@class, login_error)]"));
+
+    public void login(String login, String password){
+        loginInput.setValue(login);
+        passwordInput.setValue(password).pressEnter();
     }
 }

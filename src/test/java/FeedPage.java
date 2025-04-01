@@ -3,7 +3,7 @@ import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
 import org.openqa.selenium.By;
 
-import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.*;
 
 public class FeedPage {
     private final SelenideElement toolbarButton = $(By.xpath(
@@ -14,6 +14,10 @@ public class FeedPage {
             ".//button[contains(@class, 'theme-switcher')]"));
     private final SelenideElement darkThemeButton = $(By.xpath(
             ".//li[@data-theme='dark']"));
+    private final SelenideElement logoutButton = $(By.xpath(
+            ".//a[contains(@data-l, 'logout')]"));
+    private final SelenideElement additionalLogoutButton = $(By.xpath(
+            ".//input[contains(@data-l, 'logout') and @type='submit']"));
     private final SelenideElement mainContainer = $(By.xpath(
             "/html"));
 
@@ -32,9 +36,18 @@ public class FeedPage {
         return mainContainer.has(Condition.cssClass("__ui-theme_dark"));
     }
 
-    public void SwitchToDarkTheme(){
+    public void switchToDarkTheme(){
         toolbarButton.click();
         themeButton.click();
         darkThemeButton.click();
+    }
+
+    public void logout(){
+        toolbarButton.click();
+        logoutButton.click();
+        sleep(950);
+        if (additionalLogoutButton.exists()){
+            additionalLogoutButton.click();
+        }
     }
 }
