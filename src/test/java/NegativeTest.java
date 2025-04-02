@@ -12,7 +12,7 @@ public class NegativeTest {
 
     private static final String baseUrl = "https://ok.ru";
 
-    @Disabled("Нужно дождаться когда перестанут появляться капчи, либо обрабатывать это")
+    @Disabled("Пока не рабочий")
     @ParameterizedTest
     @MethodSource("invalidLoginData")
     public void loginWithInvalidCredentials(String login, String password){
