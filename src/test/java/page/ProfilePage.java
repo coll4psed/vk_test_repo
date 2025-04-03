@@ -1,3 +1,5 @@
+package page;
+
 import com.codeborne.selenide.SelenideElement;
 import org.openqa.selenium.By;
 
@@ -9,10 +11,11 @@ public class ProfilePage {
             "//*[@id=\"hook_Block_ProfileCover\"]/div"));
 
     public void waitForPageToLoad(){
-        profileBlock.shouldBe(visible);
+        profileBlock
+                .shouldBe(visible.because("Блок профиля отсутствует на странице"));
     }
 
     public boolean isProfilePageOpened(){
-        return profileBlock.exists();
+        return profileBlock.isDisplayed();
     }
 }

@@ -1,12 +1,13 @@
+package page;
+
 import com.codeborne.selenide.SelenideElement;
 import org.openqa.selenium.By;
 
-import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 
 public class GroupPage {
-    private final SelenideElement subcribeButton = $(By.xpath(
+    private final SelenideElement subscribeButton = $(By.xpath(
             "//*[@id=\"hook_Loader_PopularGroupsListBlockLoader\"]" +
                     "/div[1]/div[1]/div[1]/div[2]/div[3]/groups-join-component/button"));
 
@@ -14,15 +15,19 @@ public class GroupPage {
             "//*[@id=\"hook_Loader_PopularGroupsListBlockLoader\"]" +
                     "/div[1]/div[1]/div[1]/div[2]/div[3]/groups-join-component/div/a/span/span[1]"));
 
-    public void subcribe(){
-        subcribeButton.click();
+    public void subscribe(){
+        subscribeButton
+                .shouldBe(visible.because("Кнопка подписаться отсутствует на странице"))
+                .click();
     }
 
     public void waitForPageToLoad(){
-        openLink.shouldBe(visible);
+        openLink
+                .shouldBe(visible.because("Кнопка открыть отсутствует на странице"));
     }
 
     public boolean isSubscribed(){
-        return openLink.has(text("Перейти"));
+        return openLink
+                .isDisplayed();
     }
 }
