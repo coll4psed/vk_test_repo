@@ -1,3 +1,5 @@
+package page;
+
 import com.codeborne.selenide.SelenideElement;
 import org.openqa.selenium.By;
 
@@ -9,17 +11,21 @@ public class GroupPage {
             ".//button[contains(@class, 'groups-join')]"));
 
     private final SelenideElement openLink = $(By.xpath(
-            ".//div[contains(@class, 'similar-group-holder')]"));
+            ".//div[@class='similar-group-holder']/a"));
 
     public void subscribe() {
-        subscribeButton.click();
+        subscribeButton
+                .shouldBe(visible.because("Кнопка подписаться отсутствует на странице"))
+                .click();
     }
 
     public void waitForPageToLoad() {
-        openLink.shouldBe(visible);
+        openLink
+                .shouldBe(visible.because("Кнопка открыть отсутствует на странице"));
     }
 
     public boolean isSubscribed() {
-        return openLink.exists();
+        return openLink
+                .isDisplayed();
     }
 }

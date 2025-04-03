@@ -1,24 +1,13 @@
-import com.codeborne.selenide.Selenide;
+package test;
+
 import org.junit.jupiter.api.*;
+import page.FeedPage;
+import page.GroupPage;
+import page.ProfilePage;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public class OKTest {
-
-    private static final String baseUrl = "https://ok.ru";
-
-    @BeforeAll
-    public static void loginOK(){
-        Selenide.open(baseUrl);
-        LoginPage loginPage = new LoginPage();
-        loginPage.login("technopol45", "technopolisPassword");
-    }
-
-    @BeforeEach
-    public void setUp(){
-        Selenide.open(baseUrl);
-    }
-
+public class OKTest extends BaseTest {
     @DisplayName("User accessing his profile")
     @Test
     public void userCanAccessProfileUsingToolbar() {
@@ -40,22 +29,9 @@ public class OKTest {
     @DisplayName("User subscribes to a group")
     @Test
     public void userCanSubscribeGroup(){
-        FeedPage feedPage = new FeedPage();
-        GroupPage groupPage = feedPage.openGroupPage();
+        GroupPage groupPage = Navigation.openGroupPage();
         groupPage.subscribe();
         groupPage.waitForPageToLoad();
         assertTrue(groupPage.isSubscribed());
-    }
-
-    @Disabled
-    @Test
-    public void disabledTest(){
-        assertTrue(true);
-    }
-
-    @AfterAll
-    public static void logout(){
-        FeedPage feedPage = new FeedPage();
-        feedPage.logout();
     }
 }

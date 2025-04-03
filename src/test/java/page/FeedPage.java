@@ -1,8 +1,10 @@
+package page;
+
 import com.codeborne.selenide.Condition;
-import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
 import org.openqa.selenium.By;
 
+import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.*;
 
 public class FeedPage {
@@ -14,40 +16,32 @@ public class FeedPage {
             ".//button[contains(@class, 'theme-switcher')]"));
     private final SelenideElement darkThemeButton = $(By.xpath(
             ".//li[@data-theme='dark']"));
-    private final SelenideElement logoutButton = $(By.xpath(
-            ".//a[contains(@data-l, 'logout')]"));
-    private final SelenideElement additionalLogoutButton = $(By.xpath(
-            ".//input[contains(@data-l, 'logout') and @type='submit']"));
     private final SelenideElement mainContainer = $(By.xpath(
             "/html"));
 
     public ProfilePage openProfilePage(){
-        toolbarButton.click();
-        userInfoToolbarLink.click();
+        toolbarButton
+                .shouldBe(visible.because("Кнопка тулбара не найдена на странице"))
+                .click();
+        userInfoToolbarLink
+                .shouldBe(visible.because("Кнопка перехода в профиль не найдена на странице"))
+                .click();
         return new ProfilePage();
     }
 
-    public GroupPage openGroupPage(){
-        Selenide.open("https://ok.ru/groups");
-        return new GroupPage();
+    public void switchToDarkTheme(){
+        toolbarButton
+                .shouldBe(visible.because("Кнопка тулбара не найдена на странице"))
+                .click();
+        themeButton
+                .shouldBe(visible.because("Кнопка смены темы не найдена на странице"))
+                .click();
+        darkThemeButton
+                .shouldBe(visible.because("Кнопка смены темы на ТЁМНУЮ не найдена"))
+                .click();
     }
 
     public boolean isDarkThemeEnabled(){
         return mainContainer.has(Condition.cssClass("__ui-theme_dark"));
-    }
-
-    public void switchToDarkTheme(){
-        toolbarButton.click();
-        themeButton.click();
-        darkThemeButton.click();
-    }
-
-    public void logout(){
-        toolbarButton.click();
-        logoutButton.click();
-        sleep(950);
-        if (additionalLogoutButton.exists()){
-            additionalLogoutButton.click();
-        }
     }
 }
