@@ -9,6 +9,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class OKTest extends BaseTest {
     @DisplayName("User accessing his profile")
+    @Tag("PositiveTest")
     @Test
     public void userCanAccessProfileUsingToolbar() {
         FeedPage feedPage = new FeedPage();
@@ -19,6 +20,7 @@ public class OKTest extends BaseTest {
 
     // Предусловие, изначально должна быть светлая тема
     @DisplayName("User switching to dark theme")
+    @Tag("PositiveTest")
     @Test
     public void userCanSwitchToDarkTheme(){
         FeedPage feedPage = new FeedPage();
@@ -26,7 +28,9 @@ public class OKTest extends BaseTest {
         assertTrue(feedPage.isDarkThemeEnabled());
     }
 
+    @Timeout(5)
     @DisplayName("User subscribes to a group")
+    @Tag("PositiveTest")
     @Test
     public void userCanSubscribeGroup(){
         GroupPage groupPage = Navigation.openGroupPage();

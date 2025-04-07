@@ -11,9 +11,9 @@ public class LoginPage {
             ".//input[@id='field_email']"));
     private final SelenideElement passwordInput = $(By.xpath(
             ".//input[@id='field_password']"));
-
-    public final SelenideElement errorMessage = $(By.xpath(
-            ".//div[contains(@class, login_error)]"));
+    private final SelenideElement errorMessage = $(By.xpath(
+            ".//div[contains(@class, form_i__error)]/" +
+                    "div[contains(@class, login_error)]"));
 
     public void login(String login, String password){
         loginInput
@@ -23,5 +23,9 @@ public class LoginPage {
                 .shouldBe(visible.because("Окно ввода пароля отсутствует"))
                 .setValue(password)
                 .pressEnter();
+    }
+
+    public boolean isErrorMessageOnPage(){
+        return errorMessage.exists() && !errorMessage.getText().isEmpty();
     }
 }
