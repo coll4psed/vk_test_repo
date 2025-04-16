@@ -9,13 +9,13 @@ import static com.codeborne.selenide.Selenide.*;
 
 public class FeedPage {
     private final SelenideElement toolbarButton = $(By.xpath(
-            ".//button[contains(@class, 'toolbar_ucard')]"));
+            ".//*[contains(@class, 'toolbar_ucard')]"));
     private final SelenideElement userInfoToolbarLink = $(By.xpath(
-            ".//div[contains(@class, 'user_name')]"));
+            ".//*[contains(@class, 'user_name')]"));
     private final SelenideElement themeButton = $(By.xpath(
-            ".//button[contains(@class, 'theme-switcher')]"));
+            ".//*[contains(@class, 'theme-switcher')]"));
     private final SelenideElement darkThemeButton = $(By.xpath(
-            ".//li[@data-theme='dark']"));
+            ".//*[@data-theme='dark']"));
     private final SelenideElement mainContainer = $(By.xpath(
             "/html"));
 

@@ -8,12 +8,12 @@ import static com.codeborne.selenide.Selenide.$;
 
 public class LoginPage {
     private final SelenideElement loginInput = $(By.xpath(
-            ".//input[@id='field_email']"));
+            ".//*[@id='field_email']"));
     private final SelenideElement passwordInput = $(By.xpath(
-            ".//input[@id='field_password']"));
+            ".//*[@id='field_password']"));
     private final SelenideElement errorMessage = $(By.xpath(
-            ".//div[contains(@class, form_i__error)]/" +
-                    "div[contains(@class, login_error)]"));
+            ".//*[contains(@class, form_i__error)]/" +
+                    "*[contains(@class, login_error)]"));
 
     public void login(String login, String password){
         loginInput
