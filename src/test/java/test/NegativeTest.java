@@ -24,7 +24,8 @@ public class NegativeTest {
         Selenide.open(baseUrl);
         LoginPage loginPage = new LoginPage();
         loginPage.login(login, password);
-        assertTrue(loginPage.isErrorMessageOnPage());
+        assertTrue(loginPage.isErrorMessageOnPage(), "Сообщение об ошибке не найдено" +
+                "или пользователю удалось авторизоваться");
     }
 
     static Stream<Arguments> invalidLoginData(){
