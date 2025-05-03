@@ -2,7 +2,7 @@ package tests;
 
 import com.codeborne.selenide.Selenide;
 import pages.GroupPage;
-import pages.TamTamPage;
+import pages.ExistingGroupPage;
 
 public class Navigation {
     public static GroupPage openGroupPage(){
@@ -12,8 +12,8 @@ public class Navigation {
 
     // По большей части это костыль, т.к. по неизвестной мне причиние
     // Поиск по названиию группы у меня не работает
-    public static TamTamPage openTamTamPage(){
+    public static ExistingGroupPage openTamTamPage(){
         Selenide.open("https://ok.ru/tamtam.official");
-        return new TamTamPage();
+        return new ExistingGroupPage();
     }
 }

@@ -11,10 +11,14 @@ public class ProfilePage extends LoadablePage {
     private final SelenideElement profileBlock = $(By.xpath(
             ".//*[contains(@class, 'profile-cover')]"));
 
+    public ProfilePage() {
+        checkPage();
+    }
+
     @Override
     public void checkPage() {
         profileBlock
-                .shouldBe(visible.because("Блок профиля отсутствуте на странице"));
+                .shouldBe(visible.because("Блок профиля отсутствует на странице"));
     }
 
     public boolean isProfilePageOpened(){

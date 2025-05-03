@@ -17,6 +17,10 @@ public class GroupPage extends LoadablePage {
     private final By groupCardElement = By
             .xpath(".//*[contains(@data-l, 'groupId')]");
 
+    public GroupPage() {
+        checkPage();
+    }
+
     @Override
     public void checkPage() {
         $$(groupCardElement)
@@ -24,13 +28,13 @@ public class GroupPage extends LoadablePage {
                 .shouldBe(visible.because("Кнопка подписаться отсутствует на странице"));
     }
 
-    public List<IGroupCard> getGroups(Function<SelenideElement, IGroupCard> factory){
+    public List<IGroupCard> getGroups(boolean enableLogging){
         return $$(groupCardElement).stream()
-                .map(factory)
+                .map(el -> GroupCardFactory.createNewInstance(el, enableLogging))
                 .collect(Collectors.toList());
     }
 
-    public IGroupCard takeFirstGroup(){
-        return getGroups(GroupCardFactory.createNewInstance(true)).getFirst();
+    public IGroupCard takeFirstGroup(boolean enableLogging){
+        return getGroups(enableLogging).getFirst();
     }
 }

@@ -5,7 +5,7 @@ import org.junit.jupiter.api.*;
 import pages.FeedPage;
 import pages.GroupPage;
 import pages.ProfilePage;
-import pages.TamTamPage;
+import pages.ExistingGroupPage;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -16,7 +16,6 @@ public class OKTest extends BaseTest {
     public void userCanAccessProfileUsingToolbar() {
         FeedPage feedPage = new FeedPage();
         ProfilePage profilePage = feedPage.openProfilePage();
-        profilePage.checkPage();
         assertTrue(profilePage.isProfilePageOpened(),
                 "Не удалось перейти в профиль пользователя");
     }
@@ -37,9 +36,8 @@ public class OKTest extends BaseTest {
     @Test
     public void userCanSubscribeGroup() {
         GroupPage groupPage = Navigation.openGroupPage();
-        groupPage.checkPage();
 
-        IGroupCard groupCard = groupPage.takeFirstGroup();
+        IGroupCard groupCard = groupPage.takeFirstGroup(true);
         assertTrue(groupCard
                         .subscribe()
                         .waitPageToUpdate()
@@ -52,10 +50,10 @@ public class OKTest extends BaseTest {
     @Tag("PositiveTest")
     @Test
     public void userCanSubscribeFromSpecificGroupPage() {
-        TamTamPage tamTamPage = Navigation.openTamTamPage();
-        if (tamTamPage.isTamTamPage()) {
-            tamTamPage.subscribe();
-            assertTrue(tamTamPage.isSubscribed());
+        ExistingGroupPage existingGroupPage = Navigation.openTamTamPage();
+        if (existingGroupPage.isTamTamPage()) {
+            existingGroupPage.subscribe();
+            assertTrue(existingGroupPage.isSubscribed());
         }
     }
 }
