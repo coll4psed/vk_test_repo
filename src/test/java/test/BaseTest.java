@@ -16,17 +16,17 @@ public class BaseTest {
     private static final String baseUrl = "https://ok.ru";
 
     private static final SelenideElement toolbarButton = $(By.xpath(
-            ".//button[contains(@class, 'toolbar_ucard')]"));
+            ".//*[contains(@class, 'toolbar_ucard')]"));
     private static final SelenideElement logoutButton = $(By.xpath(
-            ".//a[contains(@data-l, 'logout')]"));
+            ".//*[contains(@data-l, 'logout')]"));
     private static final SelenideElement additionalLogoutButton = $(By.xpath(
-            ".//input[contains(@data-l, 'logout') and @type='submit']"));
+            ".//*[contains(@data-l, 'logout') and @type='submit']"));
 
     @BeforeAll
     public static void loginOK(){
         Selenide.open(baseUrl);
         LoginPage loginPage = new LoginPage();
-        loginPage.login("technopol45", "technopolisPassword");
+        loginPage.login(AuthorizationInfo.USERNAME, AuthorizationInfo.PASSWORD);
     }
 
     @BeforeEach

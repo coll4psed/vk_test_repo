@@ -8,10 +8,10 @@ import static com.codeborne.selenide.Selenide.$;
 
 public class GroupPage {
     private final SelenideElement subscribeButton = $(By.xpath(
-            ".//button[contains(@class, 'groups-join')]"));
+            ".//*[contains(@class, 'groups-join')]"));
 
     private final SelenideElement openLink = $(By.xpath(
-            ".//div[@class='similar-group-holder']/a"));
+            ".//*[@class='similar-group-holder']/a"));
 
     public void subscribe() {
         subscribeButton

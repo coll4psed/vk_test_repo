@@ -15,7 +15,8 @@ public class OKTest extends BaseTest {
         FeedPage feedPage = new FeedPage();
         ProfilePage profilePage = feedPage.openProfilePage();
         profilePage.waitForPageToLoad();
-        assertTrue(profilePage.isProfilePageOpened());
+        assertTrue(profilePage.isProfilePageOpened(),
+                "Не удалось перейти в профиль пользователя");
     }
 
     // Предусловие, изначально должна быть светлая тема
@@ -25,7 +26,8 @@ public class OKTest extends BaseTest {
     public void userCanSwitchToDarkTheme(){
         FeedPage feedPage = new FeedPage();
         feedPage.switchToDarkTheme();
-        assertTrue(feedPage.isDarkThemeEnabled());
+        assertTrue(feedPage.isDarkThemeEnabled(),
+                "Тема не тёмная, или не удалось её сменить");
     }
 
     @Timeout(5)
@@ -36,6 +38,7 @@ public class OKTest extends BaseTest {
         GroupPage groupPage = Navigation.openGroupPage();
         groupPage.subscribe();
         groupPage.waitForPageToLoad();
-        assertTrue(groupPage.isSubscribed());
+        assertTrue(groupPage.isSubscribed(),
+                "Не удалось подписаться на группу");
     }
 }
