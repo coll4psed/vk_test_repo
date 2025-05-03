@@ -8,17 +8,23 @@ import static com.codeborne.selenide.Condition.visible;
 
 public class GroupCard implements IGroupCard {
     private final SelenideElement root;
+    private final By subscribeButton =
+            By.xpath(".//*[contains(@class, 'groups-join')]");
+    private final By openLink =
+            By.xpath(".//*[@class='similar-group-holder']/a");
 
-    public GroupCard(SelenideElement rootElement) {
+    public GroupCard(boolean isLogging, SelenideElement rootElement) {
         this.root = rootElement;
     }
 
-    public SelenideElement getSubscribeButton() {
-        return root.$(By.xpath(".//*[contains(@class, 'groups-join')]"));
+    private SelenideElement getSubscribeButton() {
+        return root.$(subscribeButton)
+                .shouldBe(visible.because("Кнопка подписки не найдена"));
     }
 
-    public SelenideElement getOpenLink() {
-        return root.$(By.xpath(".//*[@class='similar-group-holder']/a"));
+    private SelenideElement getOpenLink() {
+        return root.$(openLink)
+                .shouldBe(visible.because("Кнопка открыть не найдена"));
     }
 
     public GroupCard subscribe() {

@@ -31,6 +31,6 @@ public class GroupPage extends LoadablePage {
     }
 
     public IGroupCard takeFirstGroup(){
-        return getGroups(GroupCardFactory::createWithLogging).getFirst();
+        return getGroups(GroupCardFactory.createNewInstance(true)).getFirst();
     }
 }
