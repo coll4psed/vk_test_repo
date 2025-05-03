@@ -13,7 +13,7 @@ public class GroupCard implements IGroupCard {
     private final By openLink =
             By.xpath(".//*[@class='similar-group-holder']/a");
 
-    public GroupCard(boolean isLogging, SelenideElement rootElement) {
+    public GroupCard(SelenideElement rootElement) {
         this.root = rootElement;
     }
 

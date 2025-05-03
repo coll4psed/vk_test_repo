@@ -6,7 +6,8 @@ import elements.GroupCard;
 import elements.LoggingGroupCard;
 
 public class GroupCardFactory {
-    public static IGroupCard createNewInstance(boolean enableLogging, SelenideElement element){
-        return new GroupCard(enableLogging, element);
+    public static IGroupCard createNewInstance(SelenideElement element, boolean enableLogging){
+        IGroupCard card = new GroupCard(element);
+        return enableLogging ? new LoggingGroupCard(card) : card;
     }
 }
