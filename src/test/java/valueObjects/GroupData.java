@@ -1,3 +1,3 @@
 package valueObjects;
 
-public record GroupData(String name, String description, boolean isSubscribed){}
+public record GroupData(String name, boolean isDescriptionContainsSubstring, boolean isSubscribed){}
