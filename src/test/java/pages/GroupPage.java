@@ -2,12 +2,10 @@ package pages;
 
 import abstractions.IGroupCard;
 import abstractions.LoadablePage;
-import com.codeborne.selenide.SelenideElement;
 import factories.GroupCardFactory;
 import org.openqa.selenium.By;
 
 import java.util.List;
-import java.util.function.Function;
 import java.util.stream.Collectors;
 
 import static com.codeborne.selenide.Condition.visible;

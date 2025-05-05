@@ -5,7 +5,7 @@ import org.junit.jupiter.api.*;
 import pages.FeedPage;
 import pages.GroupPage;
 import pages.ProfilePage;
-import pages.ExistingGroupPage;
+import pages.SpecificGroupPage;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -45,15 +45,12 @@ public class OKTest extends BaseTest {
                 "Не удалось подписаться на группу");
     }
 
-    @Disabled("Необходимо исправить проверку подписки")
     @DisplayName("User can subscribe from specific group page")
     @Tag("PositiveTest")
     @Test
     public void userCanSubscribeFromSpecificGroupPage() {
-        ExistingGroupPage existingGroupPage = Navigation.openTamTamPage();
-        if (existingGroupPage.isTamTamPage()) {
-            existingGroupPage.subscribe();
-            assertTrue(existingGroupPage.isSubscribed());
-        }
+        SpecificGroupPage specificGroupPage = Navigation.openTamTamPage();
+        assertTrue(specificGroupPage.isSpecificGroupSubscribed("ТамТам",
+                "Официальная группа о приложении ТамТам!"));
     }
 }
