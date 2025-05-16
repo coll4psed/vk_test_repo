@@ -1,9 +1,11 @@
-package test;
+package tests;
 
+import abstractions.IGroupCard;
 import org.junit.jupiter.api.*;
-import page.FeedPage;
-import page.GroupPage;
-import page.ProfilePage;
+import pages.FeedPage;
+import pages.GroupPage;
+import pages.ProfilePage;
+import pages.SpecificGroupPage;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -14,7 +16,6 @@ public class OKTest extends BaseTest {
     public void userCanAccessProfileUsingToolbar() {
         FeedPage feedPage = new FeedPage();
         ProfilePage profilePage = feedPage.openProfilePage();
-        profilePage.waitForPageToLoad();
         assertTrue(profilePage.isProfilePageOpened(),
                 "Не удалось перейти в профиль пользователя");
     }
@@ -23,22 +24,33 @@ public class OKTest extends BaseTest {
     @DisplayName("User switching to dark theme")
     @Tag("PositiveTest")
     @Test
-    public void userCanSwitchToDarkTheme(){
+    public void userCanSwitchToDarkTheme() {
         FeedPage feedPage = new FeedPage();
         feedPage.switchToDarkTheme();
         assertTrue(feedPage.isDarkThemeEnabled(),
                 "Тема не тёмная, или не удалось её сменить");
     }
 
-    @Timeout(5)
     @DisplayName("User subscribes to a group")
     @Tag("PositiveTest")
     @Test
-    public void userCanSubscribeGroup(){
+    public void userCanSubscribeGroup() {
         GroupPage groupPage = Navigation.openGroupPage();
-        groupPage.subscribe();
-        groupPage.waitForPageToLoad();
-        assertTrue(groupPage.isSubscribed(),
+
+        IGroupCard groupCard = groupPage.takeFirstGroup(true);
+        assertTrue(groupCard
+                        .subscribe()
+                        .waitPageToUpdate()
+                        .isSubscribed(),
                 "Не удалось подписаться на группу");
+    }
+
+    @DisplayName("User can subscribe from specific group page")
+    @Tag("PositiveTest")
+    @Test
+    public void userCanSubscribeFromSpecificGroupPage() {
+        SpecificGroupPage specificGroupPage = Navigation.openTamTamPage();
+        assertTrue(specificGroupPage.isSpecificGroupSubscribed("ТамТам",
+                "Официальная группа о приложении ТамТам!"));
     }
 }

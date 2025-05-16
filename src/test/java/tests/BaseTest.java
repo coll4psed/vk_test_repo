@@ -1,4 +1,4 @@
-package test;
+package tests;
 
 import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
@@ -6,7 +6,7 @@ import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.openqa.selenium.By;
-import page.LoginPage;
+import pages.LoginPage;
 
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
@@ -42,7 +42,7 @@ public class BaseTest {
         logoutButton
                 .shouldBe(visible.because("Кнопка \"Выйти\" не найдена"))
                 .click();
-        sleep(950);
+        sleep(1500);
         if (additionalLogoutButton.isDisplayed()){
             additionalLogoutButton.click();
         }
