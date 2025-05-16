@@ -5,17 +5,17 @@ import com.codeborne.selenide.SelenideElement;
 import org.openqa.selenium.By;
 
 import static com.codeborne.selenide.Condition.visible;
-import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.*;
 
 public class FeedPage {
     private final SelenideElement toolbarButton = $(By.xpath(
-            "//*[@id=\"hook_Block_ToolbarUserDropdown\"]/div/button"));
+            ".//*[contains(@class, 'toolbar_ucard')]"));
     private final SelenideElement userInfoToolbarLink = $(By.xpath(
-            "//*[@id=\"user-dropdown-menu\"]/div[1]/div/div[1]/div[1]/a"));
+            ".//*[contains(@class, 'user_name')]"));
     private final SelenideElement themeButton = $(By.xpath(
-            "//*[@id=\"user-dropdown-menu\"]/div[1]/div/div[2]/ul/li[2]/button"));
+            ".//*[contains(@class, 'theme-switcher')]"));
     private final SelenideElement darkThemeButton = $(By.xpath(
-            "//*[@id=\"user-dropdown-menu\"]/div[1]/div/div[2]/ul/li[2]/ul/li[2]/button"));
+            ".//*[@data-theme='dark']"));
     private final SelenideElement mainContainer = $(By.xpath(
             "/html"));
 
@@ -29,7 +29,7 @@ public class FeedPage {
         return new ProfilePage();
     }
 
-    public void SwitchToDarkTheme(){
+    public void switchToDarkTheme(){
         toolbarButton
                 .shouldBe(visible.because("Кнопка тулбара не найдена на странице"))
                 .click();

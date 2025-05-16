@@ -8,25 +8,23 @@ import static com.codeborne.selenide.Selenide.$;
 
 public class GroupPage {
     private final SelenideElement subscribeButton = $(By.xpath(
-            "//*[@id=\"hook_Loader_PopularGroupsListBlockLoader\"]" +
-                    "/div[1]/div[1]/div[1]/div[2]/div[3]/groups-join-component/button"));
+            ".//*[contains(@class, 'groups-join')]"));
 
     private final SelenideElement openLink = $(By.xpath(
-            "//*[@id=\"hook_Loader_PopularGroupsListBlockLoader\"]" +
-                    "/div[1]/div[1]/div[1]/div[2]/div[3]/groups-join-component/div/a/span/span[1]"));
+            ".//*[@class='similar-group-holder']/a"));
 
-    public void subscribe(){
+    public void subscribe() {
         subscribeButton
                 .shouldBe(visible.because("Кнопка подписаться отсутствует на странице"))
                 .click();
     }
 
-    public void waitForPageToLoad(){
+    public void waitForPageToLoad() {
         openLink
                 .shouldBe(visible.because("Кнопка открыть отсутствует на странице"));
     }
 
-    public boolean isSubscribed(){
+    public boolean isSubscribed() {
         return openLink
                 .isDisplayed();
     }
