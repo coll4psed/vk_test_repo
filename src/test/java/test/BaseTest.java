@@ -33,7 +33,7 @@ public class BaseTest {
     public void setUp(){
         Selenide.open(baseUrl);
     }
-
+  
     @AfterAll
     public static void logout(){
         toolbarButton
