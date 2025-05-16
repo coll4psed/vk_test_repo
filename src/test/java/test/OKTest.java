@@ -1,26 +1,12 @@
-import com.codeborne.selenide.Selenide;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.BeforeEach;
+package test;
+
 import org.junit.jupiter.api.Test;
+
+import page.*;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public class OKTest {
-
-    private static final String baseUrl = "https://ok.ru";
-
-    @BeforeAll
-    public static void loginOK(){
-        Selenide.open(baseUrl);
-        LoginPage loginPage = new LoginPage();
-        loginPage.Login();
-    }
-
-    @BeforeEach
-    public void setUp(){
-        Selenide.open(baseUrl);
-    }
-
+public class OKTest extends BaseTest {
     @Test
     public void userCanAccessProfileUsingToolbar() {
         FeedPage feedPage = new FeedPage();
@@ -39,9 +25,8 @@ public class OKTest {
 
     @Test
     public void userCanSubscribeGroup(){
-        FeedPage feedPage = new FeedPage();
-        GroupPage groupPage = feedPage.openGroupPage();
-        groupPage.subcribe();
+        GroupPage groupPage = Navigation.navigateToGroupPage();
+        groupPage.subscribe();
         groupPage.waitForPageToLoad();
         assertTrue(groupPage.isSubscribed());
     }
