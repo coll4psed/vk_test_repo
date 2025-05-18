@@ -60,6 +60,7 @@ public class OKTest extends BaseTest {
         FeedPage feedPage = new FeedPage();
         feedPage.getSidebar().clickNavItem("Фото");
         AlbumPage albumsPage = new AlbumPage();
+        Selenide.sleep(2000);
         albumsPage.takeFirstAlbum()
                   .openAlbum();
         PhotoPage photoPage = new PhotoPage();

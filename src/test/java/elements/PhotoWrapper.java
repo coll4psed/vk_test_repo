@@ -33,7 +33,7 @@ public class PhotoWrapper {
     }
 
     public void isRated(){
-        root.$(rateComponent)
+        root.$(rateComponent).parent()
                 .shouldHave(cssClass("__active")
                 .because("Фотография не была оценена"));
 
