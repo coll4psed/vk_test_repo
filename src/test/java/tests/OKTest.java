@@ -1,11 +1,9 @@
 package tests;
 
 import abstractions.IGroupCard;
+import com.codeborne.selenide.Selenide;
 import org.junit.jupiter.api.*;
-import pages.FeedPage;
-import pages.GroupPage;
-import pages.ProfilePage;
-import pages.SpecificGroupPage;
+import pages.*;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -15,7 +13,7 @@ public class OKTest extends BaseTest {
     @Test
     public void userCanAccessProfileUsingToolbar() {
         FeedPage feedPage = new FeedPage();
-        ProfilePage profilePage = feedPage.openProfilePage();
+        ProfilePage profilePage = feedPage.getToolbar().openProfilePage();
         assertTrue(profilePage.isProfilePageOpened(),
                 "Не удалось перейти в профиль пользователя");
     }
@@ -26,8 +24,9 @@ public class OKTest extends BaseTest {
     @Test
     public void userCanSwitchToDarkTheme() {
         FeedPage feedPage = new FeedPage();
-        feedPage.switchToDarkTheme();
-        assertTrue(feedPage.isDarkThemeEnabled(),
+        assertTrue(feedPage.getToolbar()
+                        .switchToDarkTheme()
+                        .isDarkThemeEnabled(),
                 "Тема не тёмная, или не удалось её сменить");
     }
 
@@ -52,5 +51,21 @@ public class OKTest extends BaseTest {
         SpecificGroupPage specificGroupPage = Navigation.openTamTamPage();
         assertTrue(specificGroupPage.isSpecificGroupSubscribed("ТамТам",
                 "Официальная группа о приложении ТамТам!"));
+    }
+
+    @DisplayName("User can like personal photo")
+    @Tag("PositiveTest")
+    @Test
+    public void userCanLikePersonalPhoto(){
+        FeedPage feedPage = new FeedPage();
+        feedPage.getSidebar().clickNavItem("Фото");
+        AlbumPage albumsPage = new AlbumPage();
+        albumsPage.takeFirstAlbum()
+                  .openAlbum();
+        PhotoPage photoPage = new PhotoPage();
+        photoPage.takeFirstImage()
+                        .openImage()
+                        .rateImage()
+                        .isRated();
     }
 }

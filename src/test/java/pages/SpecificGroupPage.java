@@ -1,6 +1,7 @@
 package pages;
 
 import abstractions.LoadablePage;
+import abstractions.PageWithCommonComponents;
 import com.codeborne.selenide.SelenideElement;
 import org.openqa.selenium.By;
 import valueObjects.GroupData;
@@ -8,7 +9,7 @@ import valueObjects.GroupData;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 
-public class SpecificGroupPage extends LoadablePage {
+public class SpecificGroupPage extends PageWithCommonComponents {
     private final SelenideElement groupTitle =
             $(By.xpath(".//*[contains(@class, 'group-name_h')]"));
     private final SelenideElement subscribedGroupButton =

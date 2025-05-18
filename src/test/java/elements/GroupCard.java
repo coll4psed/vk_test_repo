@@ -14,7 +14,7 @@ public class GroupCard implements IGroupCard {
             By.xpath(".//*[@class='similar-group-holder']/a");
 
     public GroupCard(SelenideElement rootElement) {
-        this.root = rootElement;
+        root = rootElement;
     }
 
     private SelenideElement getSubscribeButton() {

@@ -1,5 +1,5 @@
 package abstractions;
 
-public abstract class LoadablePage {
-    public abstract void checkPage();
+public interface LoadablePage {
+    void checkPage();
 }

@@ -2,6 +2,7 @@ package pages;
 
 import abstractions.IGroupCard;
 import abstractions.LoadablePage;
+import abstractions.PageWithCommonComponents;
 import factories.GroupCardFactory;
 import org.openqa.selenium.By;
 
@@ -11,7 +12,7 @@ import java.util.stream.Collectors;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$$;
 
-public class GroupPage extends LoadablePage {
+public class GroupPage extends PageWithCommonComponents {
     private final By groupCardElement = By
             .xpath(".//*[contains(@data-l, 'groupId')]");
 

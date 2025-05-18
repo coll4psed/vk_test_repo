@@ -2,6 +2,7 @@ package tests;
 
 import com.codeborne.selenide.Selenide;
 import pages.GroupPage;
+import pages.PhotoPage;
 import pages.SpecificGroupPage;
 
 public class Navigation {
