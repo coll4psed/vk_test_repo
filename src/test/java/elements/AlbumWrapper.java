@@ -2,6 +2,8 @@ package elements;
 
 import com.codeborne.selenide.SelenideElement;
 
+import static com.codeborne.selenide.Condition.visible;
+
 public class AlbumWrapper {
     private final SelenideElement root;
 
@@ -10,6 +12,7 @@ public class AlbumWrapper {
     }
 
     public void openAlbum(){
-        root.click();
+        root.shouldBe(visible.because("Альбом не найден"))
+                .click();
     }
 }

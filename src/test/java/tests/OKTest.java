@@ -49,7 +49,8 @@ public class OKTest extends BaseTest {
     @Test
     public void userCanSubscribeFromSpecificGroupPage() {
         SpecificGroupPage specificGroupPage = Navigation.openTamTamPage();
-        assertTrue(specificGroupPage.isSpecificGroupSubscribed("ТамТам",
+        assertTrue(specificGroupPage.subscribeSpecificGroup()
+                .isSpecificGroupSubscribed("ТамТам",
                 "Официальная группа о приложении ТамТам!"));
     }
 
@@ -60,12 +61,11 @@ public class OKTest extends BaseTest {
         FeedPage feedPage = new FeedPage();
         feedPage.getSidebar().clickNavItem("Фото");
         AlbumPage albumsPage = new AlbumPage();
-        Selenide.sleep(2000);
+        Selenide.sleep(1000);
         albumsPage.takeFirstAlbum()
                   .openAlbum();
         PhotoPage photoPage = new PhotoPage();
         photoPage.takeFirstImage()
-                        .openImage()
                         .rateImage()
                         .isRated();
     }

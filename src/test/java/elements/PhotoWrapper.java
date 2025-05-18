@@ -1,6 +1,5 @@
 package elements;
 
-import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
 import org.openqa.selenium.By;
 
@@ -15,13 +14,6 @@ public class PhotoWrapper {
 
     public PhotoWrapper(SelenideElement rootElement) {
         this.root = rootElement;
-    }
-
-    public PhotoWrapper openImage() {
-        Selenide.sleep(1000);
-        root.click();
-
-        return this;
     }
 
     public PhotoWrapper rateImage(){
